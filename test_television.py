@@ -52,9 +52,44 @@ class TestTelevision:
 
 
     def test_channel_up(self):
-        pass
+        tv = Television()
+        tv.power() # power on  tv
+
+        tv.channel_up()  # add 1 channel
+        state = str(tv)
+        assert "Channel = 1" in state
+        tv.channel_up()
+        state = str(tv)
+        assert "Channel = 2" in state # test second channel
+        tv.channel_up()
+        state = str(tv)
+        assert "Channel = 3" in state # third channel
+        tv.channel_up()
+        state = str(tv)
+        assert "Channel = 0" in state # zero
+        tv.channel_up()
+        state = str(tv)
+        assert "Channel = 1" in state # loops back to channel one
+
     def test_channel_down(self):
-        pass
+        tv = Television()
+        tv.power()
+        tv.channel_down()
+        state = str(tv)
+        assert "Channel = 3" in state
+        tv.channel_down()
+        state = str(tv)
+        assert "Channel = 2" in state
+        tv.channel_down()
+        state = str(tv)
+        assert "Channel = 1" in state
+        tv.channel_down()
+        state = str(tv)
+        assert "Channel = 0" in state
+        tv.channel_down()
+        state = str(tv)
+        assert "Channel = 3" in state
+
     def test_volume_up(self):
         pass
     def test_volume_down(self):

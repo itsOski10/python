@@ -1,15 +1,15 @@
 class Television:
-    MIN_VOLUME = 0
-    MAX_VOLUME = 2
-    MIN_CHANNEL = 0
-    MAX_CHANNEL = 3
+    MIN_VOLUME: int = 0
+    MAX_VOLUME: int = 2
+    MIN_CHANNEL:int = 0
+    MAX_CHANNEL:int = 3
 
     def __init__(self) -> None:
         """Initialize the Television with default power, volume, and channel settings."""
-        self.__status = False
-        self.__muted = False
-        self.__volume = Television.MIN_VOLUME
-        self.__channel = Television.MIN_CHANNEL
+        self.__status:bool = False
+        self.__muted: bool = False
+        self.__volume: int = Television.MIN_VOLUME
+        self.__channel:int = Television.MIN_CHANNEL
 
     def power(self) -> None:
         """Toggle the TV’s power state between on and off"""
@@ -30,7 +30,7 @@ class Television:
                 self.__muted = False
 
     def channel_up(self) -> None:
-        """changes the channel status of the television by one up"""
+        """Increase channel,wrap around MIN_CHANNEL if MAX_CHANNEL is reached"""
         if not self.__status:
             return
         if self.__status:
@@ -40,7 +40,7 @@ class Television:
                 self.__channel = self.__channel + 1
 
     def channel_down(self) -> None:
-        """changes the channel status of the television by one down"""
+        """Decrease channel, wrap around if MAX_CHANNEL if MIN_CHANNEL is reached """
         if not self.__status:
             return
         if self.__status:
@@ -70,8 +70,8 @@ class Television:
     def __str__(self) -> str:
         """Return a string representation of the television"""
         if self.__muted:
-            displayed_volume = Television.MIN_VOLUME
+            displayed_volume:int = Television.MIN_VOLUME
         else:
-            displayed_volume = self.__volume
+            displayed_volume:int = self.__volume
 
         return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {displayed_volume}"
